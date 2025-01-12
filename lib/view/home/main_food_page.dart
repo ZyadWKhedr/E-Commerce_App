@@ -35,7 +35,14 @@ class _MainFoodPageState extends State<MainFoodPage> {
                         text: "Egypt",
                         color: AppColors.mainColor,
                       ),
-                      SmallText(text: "Alexandria")
+                      Row(
+                        children: [
+                          SmallText(text: "Alexandria"),
+                          Icon(
+                            Icons.arrow_drop_down_outlined,
+                          )
+                        ],
+                      )
                     ],
                   ),
                   Center(
