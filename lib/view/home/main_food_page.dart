@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/app_colors.dart';
 import 'package:flutter_application_2/core/widgets/big_text.dart';
@@ -14,6 +16,7 @@ class MainFoodPage extends StatefulWidget {
 class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
+    log("Current height is " + MediaQuery.of(context).size.height.toString());
     return Scaffold(
       body: Container(
         child: Column(
