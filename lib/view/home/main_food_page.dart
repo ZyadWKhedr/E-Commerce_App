@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/app_colors.dart';
 import 'package:flutter_application_2/core/widgets/big_text.dart';
 import 'package:flutter_application_2/core/widgets/small_text.dart';
+import 'package:flutter_application_2/view/home/food_page_body.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({super.key});
@@ -61,6 +62,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 ],
               ),
             ),
+            FoodPageBody(),
           ],
         ),
       ),
