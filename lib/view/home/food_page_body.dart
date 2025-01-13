@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/app_colors.dart';
+import 'package:flutter_application_2/core/dimensions.dart';
 import 'package:flutter_application_2/core/widgets/big_text.dart';
 import 'package:flutter_application_2/core/widgets/icon_and_text_widget.dart';
 import 'package:flutter_application_2/core/widgets/small_text.dart';
@@ -33,7 +34,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.9);
   var _currPageValue = 0.0;
   double _scaleFactor = 0.8;
-  double height = 250;
+  double height = Dimensions.pageViewContainer;
 
   @override
   void initState() {
@@ -56,7 +57,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         Container(
-          height: 320,
+          height: Dimensions.pageView,
           child: PageView.builder(
               controller: pageController,
               itemCount: imageList.length,
@@ -73,6 +74,38 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             activeSize: const Size(18.0, 9.0),
             activeShape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0)),
+          ),
+        ),
+        SizedBox(
+          height: Dimensions.height30,
+        ),
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: 'Popular'),
+              SizedBox(
+                width: Dimensions.width10,
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 3),
+                child: BigText(
+                  text: '.',
+                  color: Colors.black26,
+                ),
+              ),
+              SizedBox(
+                width: Dimensions.width10,
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 2),
+                child: SmallText(
+                  text: 'Food Pairing',
+                  color: Colors.black38,
+                ),
+              )
+            ],
           ),
         )
       ],
@@ -125,7 +158,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       child: Stack(
         children: [
           Container(
-            height: height,
+            height: Dimensions.pageViewContainer,
             margin: EdgeInsets.only(
               left: 10,
               right: 10,
@@ -139,7 +172,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 140,
+              height: Dimensions.pageViewTextContainer,
               margin: EdgeInsets.only(
                 left: 30,
                 right: 30,
@@ -171,7 +204,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       color: AppColors.mainBlackColor,
                     ),
                     SizedBox(
-                      height: 10,
+                      height: Dimensions.height10,
                     ),
                     Row(
                       children: [
@@ -200,7 +233,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: Dimensions.height10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

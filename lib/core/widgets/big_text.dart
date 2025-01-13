@@ -4,7 +4,7 @@ class BigText extends StatelessWidget {
   BigText({
     super.key,
     required this.text,
-    this.color = const Color(0xff89dad0),
+    this.color = const Color(0xff332d2b),
     this.size = 20,
     this.overFlow = TextOverflow.ellipsis,
   });
