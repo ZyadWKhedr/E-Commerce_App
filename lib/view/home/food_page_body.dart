@@ -236,16 +236,19 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           icon: Icons.circle_sharp,
           text: 'Normal',
           iconcolor: AppColors.iconColor1,
+          size: Dimensions.iconSize24 / 2,
         ),
         IconAndTextWidget(
           icon: Icons.location_on,
           text: '1.7km',
           iconcolor: AppColors.mainColor,
+          size: Dimensions.iconSize24 / 2,
         ),
         IconAndTextWidget(
           icon: Icons.circle_sharp,
           text: '32min',
           iconcolor: AppColors.iconColor2,
+          size: Dimensions.iconSize24 / 2,
         ),
       ],
     );
@@ -253,21 +256,42 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   Widget _buildPageItem(int index) {
     Matrix4 matrix = Matrix4.identity();
-    double currScale = 1 - (_currentPage - index) * (1 - _scaleFactor);
-    double currTrans = height * (1 - currScale) / 2;
 
     if (index == _currentPage.floor()) {
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)
-        ..setTranslationRaw(0, currTrans, 0);
-    } else if (index == _currentPage.floor() + 1 ||
-        index == _currentPage.floor() - 1) {
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)
-        ..setTranslationRaw(0, currTrans, 0);
-    } else {
-      matrix = Matrix4.diagonal3Values(1, 0.8, 1)
-        ..setTranslationRaw(0, height * (1 - _scaleFactor) / 2, 0);
+      // The current page is at the center of the PageView, so apply scaling to make it larger
+      var currScale = 1 -
+          (_currentPage - index) *
+              (1 - _scaleFactor); // Calculate scaling factor
+      var currTrans = height *
+          (1 - currScale) /
+          2; // Calculate translation to center the page vertically
+      matrix = Matrix4.diagonal3Values(
+          1, currScale, 1) // Apply scaling along the Y-axis
+        ..setTranslationRaw(0, currTrans, 0); // Apply vertical translation
     }
-
+    // Check if the next page index (index + 1) is the current page in the PageView
+    else if (index == _currentPage.floor() + 1) {
+      // The next page is slightly scaled up as it approaches the center
+      var currScale =
+          _scaleFactor + (_currentPage - index + 1) * (1 - _scaleFactor);
+      var currTrans = height * (1 - currScale) / 2;
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)
+        ..setTranslationRaw(0, currTrans, 0); // Apply scaling and translation
+    }
+    // Check if the previous page index (index - 1) is the current page in the PageView
+    else if (index == _currentPage.floor() - 1) {
+      // The previous page is scaled similarly to the next page
+      var currScale = 1 - (_currentPage - index) * (1 - _scaleFactor);
+      var currTrans = height * (1 - currScale) / 2;
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)
+        ..setTranslationRaw(0, currTrans, 0); // Apply scaling and translation
+    } else {
+      // For pages that are further away from the center, scale them down
+      var currScale = 0.8; // Apply a fixed scaling factor for distant pages
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)
+        ..setTranslationRaw(0, height * (1 - _scaleFactor) / 2,
+            0); // Apply a vertical translation
+    }
     return Transform(
       transform: matrix,
       child: Stack(

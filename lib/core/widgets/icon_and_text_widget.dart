@@ -8,12 +8,14 @@ class IconAndTextWidget extends StatelessWidget {
       required this.icon,
       required this.text,
       required this.iconcolor,
-      this.color = const Color(0xff332d2b)});
+      this.color = const Color(0xff332d2b),
+      this.size = 12});
 
   final IconData icon;
   final String text;
   final Color color;
   final Color iconcolor;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class IconAndTextWidget extends StatelessWidget {
           Icon(
             icon,
             color: iconcolor,
+            size: size,
           ),
           SizedBox(
             width: Dimensions.width10 * (0.5 / 10),
@@ -31,6 +34,7 @@ class IconAndTextWidget extends StatelessWidget {
           SmallText(
             color: color,
             text: text,
+            size: size,
           )
         ],
       ),
