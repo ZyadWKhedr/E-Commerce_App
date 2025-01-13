@@ -107,7 +107,44 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               )
             ],
           ),
-        )
+        ),
+        // SizedBox(
+        //   height: Dimensions.height10,
+        // ),
+        Container(
+          height: 700,
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: EdgeInsets.only(
+                  left: Dimensions.width10 / 2,
+                  right: Dimensions.width20,
+                  top: Dimensions.height10 / 2,
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      height: Dimensions.height30 * 4, // Adjust as needed
+                      width: Dimensions.width30 * 2, // Adjust as needed
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius20),
+                        color: Colors.amber,
+                        image: DecorationImage(
+                          image: AssetImage(imageList[index]),
+                          fit: BoxFit.cover, // Ensures the image fits well
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
       ],
     );
   }
